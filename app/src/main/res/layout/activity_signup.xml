@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SIGN UP"
+        android:textStyle="bold"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        />
+
+    <TextView
+        android:id="@+id/tID2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="ID"
+        android:textSize="25dp"
+        app:layout_constraintRight_toLeftOf="@id/title2"
+        app:layout_constraintTop_toBottomOf="@id/title2"
+        android:layout_marginEnd="80dp"/>
+
+    <EditText
+        android:id="@+id/eID2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="20dp"
+        android:hint="아이디를 입력하세요."
+        app:layout_constraintTop_toBottomOf="@id/tID2"
+        app:layout_constraintStart_toStartOf="@id/tID2"
+        android:ems="15"
+        />
+
+    <TextView
+        android:id="@+id/tPS2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호"
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@id/eID2"
+        app:layout_constraintLeft_toLeftOf="@id/eID2"
+        android:layout_marginTop="30dp"
+        />
+
+    <EditText
+        android:id="@+id/ePS2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="20dp"
+        android:hint="비밀번호를 입력하세요."
+        app:layout_constraintTop_toBottomOf="@id/tPS2"
+        app:layout_constraintStart_toStartOf="@id/tPS2"
+        android:ems="15"
+        />
+
+    <TextView
+        android:id="@+id/tNN1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="닉네임"
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@id/ePS2"
+        app:layout_constraintLeft_toLeftOf="@id/ePS2"
+        android:layout_marginTop="30dp"
+        />
+
+    <EditText
+        android:id="@+id/eNN1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="20dp"
+        android:hint="닉네임을 입력하세요."
+        app:layout_constraintTop_toBottomOf="@id/tNN1"
+        app:layout_constraintStart_toStartOf="@id/tNN1"
+        android:ems="15"
+        />
+
+    <TextView
+        android:id="@+id/tAD1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="거주지"
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@id/eNN1"
+        app:layout_constraintLeft_toLeftOf="@id/eNN1"
+        android:layout_marginTop="30dp"
+        />
+
+    <EditText
+        android:id="@+id/eAD1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="20dp"
+        android:hint="거주지를 입력하세요."
+        app:layout_constraintTop_toBottomOf="@id/tAD1"
+        app:layout_constraintStart_toStartOf="@id/tAD1"
+        android:ems="15"
+        />
+
+    <Button
+        android:id="@+id/signbtn2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원가입하기"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/ePS2"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="280dp"
+        android:background="@drawable/solid_btn"
+        />
+
+</android.support.constraint.ConstraintLayout>

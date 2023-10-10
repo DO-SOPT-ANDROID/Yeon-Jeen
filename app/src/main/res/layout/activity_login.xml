@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to SOPT"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        />
+
+    <TextView
+        android:id="@+id/tID1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        android:textSize="25dp"
+        app:layout_constraintRight_toLeftOf="@id/title1"
+        app:layout_constraintTop_toBottomOf="@id/title1"
+        android:layout_marginTop="50dp"
+        />
+
+    <EditText
+        android:id="@+id/eID1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="20dp"
+        android:hint="아이디를 입력하세요."
+        app:layout_constraintTop_toBottomOf="@id/tID1"
+        app:layout_constraintStart_toStartOf="@id/tID1"
+        android:ems="15"
+        />
+
+    <TextView
+        android:id="@+id/tPS1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호"
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@id/eID1"
+        app:layout_constraintLeft_toLeftOf="@id/eID1"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/ePS1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="20dp"
+        android:hint="비밀번호를 입력하세요."
+        app:layout_constraintTop_toBottomOf="@id/tPS1"
+        app:layout_constraintStart_toStartOf="@id/tPS1"
+        android:ems="15"/>
+
+    <Button
+        android:id="@+id/logbtn1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="로그인하기"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/ePS1"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="230dp"
+        android:background="@drawable/solid_btn"
+        />
+
+    <Button
+        android:id="@+id/signbtn1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원가입하기"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/logbtn1"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/solid_btn"
+        />
+
+</android.support.constraint.ConstraintLayout>
