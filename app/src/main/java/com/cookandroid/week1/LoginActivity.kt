@@ -1,6 +1,5 @@
 package com.cookandroid.week1
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -12,22 +11,20 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
     private val loginLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
+        if (result.resultCode == RESULT_OK) {
             val data = result.data
-            val loginSuccess = data?.getBooleanExtra("loginSuccess", false) ?: false
-            if (loginSuccess) {
-                val id = data?.getStringExtra("id")
-                val nickname = data?.getStringExtra("nickname")
-                val address = data?.getStringExtra("address")
 
+            val id = data?.getStringExtra("id")
+            val nickname = data?.getStringExtra("nickname")
+            val address = data?.getStringExtra("address")
 
-                val intent = Intent(this, MainActivity::class.java).apply {
-                    putExtra("id", id)
-                    putExtra("nickname", nickname)
-                    putExtra("address", address)
-                }
-                startActivity(intent)
+            val intent = Intent(this, MainActivity::class.java).apply {
+                putExtra("id", id)
+                putExtra("nickname", nickname)
+                putExtra("address", address)
             }
+
+            startActivity(intent)
         }
     }
 
@@ -48,14 +45,18 @@ class LoginActivity : AppCompatActivity() {
             val enteredId = binding.eID1.text.toString()
             val enteredPassword = binding.ePS1.text.toString()
 
-            if (checkLogin(enteredId, enteredPassword)) {
 
+            if (checkLogin(enteredId, enteredPassword)) {
                 val intent = Intent(this, MainActivity::class.java).apply {
                     putExtra("id", enteredId)
-                    putExtra("loginSuccess", true)
+                    val nickname = intent.getStringExtra("nickname")
+                    putExtra("nickname", nickname)
+
+                    val address = intent.getStringExtra("address")
+                    putExtra("address", address)
+
                 }
                 startActivity(intent)
-
             } else {
                 Toast.makeText(this, "로그인에 실패하셨습니다.", Toast.LENGTH_SHORT).show()
             }

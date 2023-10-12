@@ -33,7 +33,7 @@ class SignUpActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show()
 
-                setResult(RESULT_OK, intent)
+                startActivity(intent)
                 finish()
             } else {
                 Toast.makeText(this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show()
@@ -55,4 +55,6 @@ class SignUpActivity : AppCompatActivity() {
         return isIdValid && isPasswordValid && isNicknameValid && isAddressValid
     }
 }
+
+
 
