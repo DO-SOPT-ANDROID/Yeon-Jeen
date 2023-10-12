@@ -1,13 +1,36 @@
 package com.cookandroid.week1
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.cookandroid.week1.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+
+    private val loginLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data
+            val loginSuccess = data?.getBooleanExtra("loginSuccess", false) ?: false
+            if (loginSuccess) {
+                val id = data?.getStringExtra("id")
+                val nickname = data?.getStringExtra("nickname")
+                val address = data?.getStringExtra("address")
+
+
+                val intent = Intent(this, MainActivity::class.java).apply {
+                    putExtra("id", id)
+                    putExtra("nickname", nickname)
+                    putExtra("address", address)
+                }
+                startActivity(intent)
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -18,22 +41,21 @@ class LoginActivity : AppCompatActivity() {
 
         binding.signbtn1.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
+            loginLauncher.launch(intent)
         }
 
         binding.logbtn1.setOnClickListener {
             val enteredId = binding.eID1.text.toString()
             val enteredPassword = binding.ePS1.text.toString()
 
-
             if (checkLogin(enteredId, enteredPassword)) {
 
-                Toast.makeText(this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
-
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                val intent = Intent(this, MainActivity::class.java).apply {
+                    putExtra("id", enteredId)
+                    putExtra("loginSuccess", true)
+                }
+                loginLauncher.launch(intent)
             } else {
-
                 Toast.makeText(this, "로그인에 실패하셨습니다.", Toast.LENGTH_SHORT).show()
             }
         }

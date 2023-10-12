@@ -1,14 +1,27 @@
 package com.cookandroid.week1
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.cookandroid.week1.databinding.ActivitySignupBinding
 
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
+
+    private val signUpLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+
+            val data = result.data
+            if (data != null && data.getBooleanExtra("signUpSuccess", false)) {
+                Toast.makeText(this, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
@@ -19,12 +32,10 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.signbtn2.setOnClickListener {
             if (SignUpRegistration()) {
-
                 val id = binding.eID2.text.toString()
                 val password = binding.ePS2.text.toString()
                 val nickname = binding.eNN1.text.toString()
                 val address = binding.eAD1.text.toString()
-
 
                 val intent = Intent(this, LoginActivity::class.java).apply {
                     putExtra("id", id)
@@ -33,13 +44,8 @@ class SignUpActivity : AppCompatActivity() {
                     putExtra("address", address)
                 }
 
-
-                Toast.makeText(this, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show()
-
-
-                startActivity(intent)
+                signUpLauncher.launch(intent)
             } else {
-
                 Toast.makeText(this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show()
             }
         }
