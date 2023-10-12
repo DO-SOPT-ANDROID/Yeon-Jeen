@@ -1,26 +1,13 @@
 package com.cookandroid.week1
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.cookandroid.week1.databinding.ActivitySignupBinding
 
-
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
-
-    private val signUpLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-
-            val data = result.data
-            if (data != null && data.getBooleanExtra("signUpSuccess", false)) {
-                Toast.makeText(this, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +31,10 @@ class SignUpActivity : AppCompatActivity() {
                     putExtra("address", address)
                 }
 
-                signUpLauncher.launch(intent)
+                Toast.makeText(this, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show()
+
+                setResult(RESULT_OK, intent)
+                finish()
             } else {
                 Toast.makeText(this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show()
             }
@@ -57,7 +47,6 @@ class SignUpActivity : AppCompatActivity() {
         val nickname = binding.eNN1.text.toString()
         val address = binding.eAD1.text.toString()
 
-
         val isIdValid = id.length in 6..10
         val isPasswordValid = password.length in 8..12
         val isNicknameValid = nickname.isNotBlank() && !nickname.matches(Regex("\\s+"))
@@ -66,3 +55,4 @@ class SignUpActivity : AppCompatActivity() {
         return isIdValid && isPasswordValid && isNicknameValid && isAddressValid
     }
 }
+

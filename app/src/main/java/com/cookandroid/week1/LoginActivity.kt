@@ -54,7 +54,8 @@ class LoginActivity : AppCompatActivity() {
                     putExtra("id", enteredId)
                     putExtra("loginSuccess", true)
                 }
-                loginLauncher.launch(intent)
+                startActivity(intent)
+
             } else {
                 Toast.makeText(this, "로그인에 실패하셨습니다.", Toast.LENGTH_SHORT).show()
             }
