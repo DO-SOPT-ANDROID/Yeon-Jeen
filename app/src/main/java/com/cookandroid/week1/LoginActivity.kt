@@ -10,23 +10,24 @@ import com.cookandroid.week1.databinding.ActivityLoginBinding
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
-    private val loginLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val data = result.data
+    private val loginLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val data = result.data
 
-            val id = data?.getStringExtra("id")
-            val nickname = data?.getStringExtra("nickname")
-            val address = data?.getStringExtra("address")
+                val id = data?.getStringExtra("id")
+                val nickname = data?.getStringExtra("nickname")
+                val address = data?.getStringExtra("address")
 
-            val intent = Intent(this, MainActivity::class.java).apply {
-                putExtra("id", id)
-                putExtra("nickname", nickname)
-                putExtra("address", address)
+                val intent = Intent(this, MainActivity::class.java).apply {
+                    putExtra("id", id)
+                    putExtra("nickname", nickname)
+                    putExtra("address", address)
+                }
+
+                startActivity(intent)
             }
-
-            startActivity(intent)
         }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
