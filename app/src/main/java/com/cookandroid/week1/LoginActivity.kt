@@ -56,8 +56,12 @@ class LoginActivity : AppCompatActivity() {
                     val address = intent.getStringExtra("address")
                     putExtra("address", address)
 
+
+
                 }
                 startActivity(intent)
+                Toast.makeText(this, "로그인에 성공하셨습니다.", Toast.LENGTH_SHORT).show()
+
             } else {
                 Toast.makeText(this, "로그인에 실패하셨습니다.", Toast.LENGTH_SHORT).show()
             }
