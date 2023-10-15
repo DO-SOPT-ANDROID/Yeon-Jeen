@@ -12,12 +12,10 @@ class LoginActivity : AppCompatActivity() {
 
     private val loginLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                val data = result.data
-
-                val id = data?.getStringExtra("id")
-                val nickname = data?.getStringExtra("nickname")
-                val address = data?.getStringExtra("address")
+            result.data?.let { data ->
+                val id = data.getStringExtra("id")
+                val nickname = data.getStringExtra("nickname")
+                val address = data.getStringExtra("address")
 
                 val intent = Intent(this, MainActivity::class.java).apply {
                     putExtra("id", id)
@@ -29,13 +27,13 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
         binding.signbtn1.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
@@ -55,7 +53,6 @@ class LoginActivity : AppCompatActivity() {
 
                     val address = intent.getStringExtra("address")
                     putExtra("address", address)
-
 
 
                 }

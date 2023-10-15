@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
         val nickname = intent.getStringExtra("nickname")
         val id = intent.getStringExtra("id")
         val address = intent.getStringExtra("address")
