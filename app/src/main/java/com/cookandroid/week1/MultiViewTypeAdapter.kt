@@ -15,7 +15,7 @@ class MultiViewTypeAdapter(private var items: List<Any>) :
     private val VIEW_TYPE_ITEM1 = 1
     private val VIEW_TYPE_ITEM2 = 2
 
-    fun setFriendList(friendList: List<datas>) {
+    fun setFriendList(friendList: List<A>) {
         items = friendList
         notifyDataSetChanged()
     }
@@ -26,11 +26,11 @@ class MultiViewTypeAdapter(private var items: List<Any>) :
         private val tvName: TextView = itemView.findViewById(R.id.im_tv_name)
         private val tvSelfDescription: TextView = itemView.findViewById(R.id.im_tv_self_decription)
 
-        fun bindMyProfile(myProfile: datas) {
+        fun bindMyProfile(myProfile: A.MyProfile) {
 
-            ivProfile.setImageResource(myProfile.profileImage)
+            ivProfile.setImageResource(myProfile.profileImageResId)
             tvName.text = myProfile.name
-            tvSelfDescription.text = myProfile.self_description
+            tvSelfDescription.text = myProfile.selfDescription
         }
     }
 
@@ -39,22 +39,12 @@ class MultiViewTypeAdapter(private var items: List<Any>) :
         private val tvName: TextView = itemView.findViewById(R.id.tv_name)
         private val tvSelfDescription: TextView = itemView.findViewById(R.id.tv_self_decription)
 
-        fun onBind(friendData: datas) {
+        fun onBind(friendData: A.Friend) {
             ivProfile.setImageResource(friendData.profileImage)
             tvName.text = friendData.name
             tvSelfDescription.text = friendData.self_description
         }
     }
-
-
-//    inner class FriendViewHolder(private val binding: View) :
-//        RecyclerView.ViewHolder(binding.root) {
-//        fun onBind(friendData: Friend) {
-//            binding.ivProfile.setImageResource(friendData.profileImage)
-//            binding.tvName.text = friendData.name
-//            binding.tvSelfDecription.text = friendData.self_description
-//        }
-//    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -76,18 +66,15 @@ class MultiViewTypeAdapter(private var items: List<Any>) :
     }
 
 
-
-
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is MyProfileViewHolder -> {
-                val myProfile = items[position] as datas
+                val myProfile = items[position] as A.MyProfile
                 holder.bindMyProfile(myProfile)
             }
 
             is FriendViewHolder -> {
-                val friendData = items[position] as datas
+                val friendData = items[position] as A.Friend
                 (holder as FriendViewHolder).onBind(friendData)
             }
         }
@@ -95,33 +82,20 @@ class MultiViewTypeAdapter(private var items: List<Any>) :
 
 
     override fun getItemViewType(position: Int): Int {
-        if (position == 0 && items[position] is datas) {
+        if (items[position] is A.MyProfile) {
             return VIEW_TYPE_ITEM1
-        } else if (items[position] is datas) {
+        } else {
             return VIEW_TYPE_ITEM2
         }
-        return VIEW_TYPE_ITEM1
     }
 
-
-//    override fun getItemViewType(position: Int): Int {
-//        if (position == 0 && items[position] is MyProfile) {
-//            return VIEW_TYPE_ITEM1
-//        } else {
-//            return VIEW_TYPE_ITEM2
-//        }
-//    }
-
-
-//    override fun getItemCount(): Int {
-//        return items.size
-//    }
 
     override fun getItemCount(): Int {
         return items.size + 1
     }
 
 }
+
 
 
 

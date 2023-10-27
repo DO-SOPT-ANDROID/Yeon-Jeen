@@ -4,52 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/im_myprofile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/im_iv_profile"
-            android:layout_width="70dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="35dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/my_profile"
-            app:layout_constraintDimensionRatio="1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearance="@style/conersize40"/>
-
-        <TextView
-            android:id="@+id/im_tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="연진이"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/im_iv_profile"
-            app:layout_constraintStart_toEndOf="@id/im_iv_profile"
-            app:layout_constraintTop_toTopOf="@id/im_iv_profile" />
-
-        <TextView
-            android:id="@+id/im_tv_self_decription"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:maxLines="1"
-            android:text="나는 연진이야 잘 부탁해"
-            app:layout_constraintBottom_toBottomOf="@id/im_iv_profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/im_iv_profile" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_profile"
@@ -61,7 +15,8 @@
         android:src="@drawable/my_profile"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/im_myprofile"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:shapeAppearance="@style/conersize40" />
 
     <TextView

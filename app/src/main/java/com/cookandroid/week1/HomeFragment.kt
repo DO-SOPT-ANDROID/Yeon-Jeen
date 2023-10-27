@@ -1,6 +1,7 @@
 package com.cookandroid.week1
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,94 +18,86 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
-        //return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-//     val myProfile = datas(
-//         profileImage = R.drawable.my_profile,
-//         name = "연진이",
-//         self_description = "잘 부탁해",
-//         type = "MyProfileViewHolder"
-//    )
 
-
-    private val mockDataList = listOf<datas>(
-        datas(
-            profileImage = R.drawable.my_profile,
+    private val mockFriendList = listOf<A>(
+        A.MyProfile(
+            profileImageResId = R.drawable.my_profile,
             name = "연진이",
-            self_description = "잘 부탁해",
+            selfDescription = "잘 부탁해",
             type = "MyProfileViewHolder"
         ),
-        datas(
-            profileImage = R.drawable.ex1,
+        A.Friend(
+            profileImage = R.drawable.fubao1,
             name = "푸바오1",
             self_description = "할부지가 젤 좋아",
             type = "FriendViewHolder"
         ),
-        datas(
-            profileImage = R.drawable.ex1,
+        A.Friend(
+            profileImage = R.drawable.fubao11,
             name = "푸바오2",
             self_description = "당근주세요",
             type = "FriendViewHolder"
         ),
-        datas(
-            profileImage = R.drawable.ex1,
+        A.Friend(
+            profileImage = R.drawable.fubao10,
             name = "푸바오3",
             self_description = "나는야 미판다",
             type = "FriendViewHolder"
         ),
-        datas(
-            profileImage = R.drawable.ex1,
+        A.Friend(
+            profileImage = R.drawable.fubao9,
             name = "푸바오3",
-            self_description = "나는야 미판다",
+            self_description = "노는게 제일 좋아",
             type = "FriendViewHolder"
         ),
-        datas(
-            profileImage = R.drawable.ex1,
-            name = "푸바오3",
-            self_description = "나는야 미판다",
+        A.Friend(
+            profileImage = R.drawable.fubao5,
+            name = "푸바오4",
+            self_description = "나는 용인 푸씨",
             type = "FriendViewHolder"
         ),
-        datas(
-            profileImage = R.drawable.ex1,
-            name = "푸바오3",
-            self_description = "나는야 미판다",
+        A.Friend(
+            profileImage = R.drawable.fubao5,
+            name = "푸바오5",
+            self_description = "푸공주님",
             type = "FriendViewHolder"
         ),
-        datas(
-            profileImage = R.drawable.ex1,
-            name = "푸바오3",
-            self_description = "나는야 미판다",
+        A.Friend(
+            profileImage = R.drawable.fubao6,
+            name = "푸바오6",
+            self_description = "옆집 아저씨 누구야",
             type = "FriendViewHolder"
         ),
-        datas(
-            profileImage = R.drawable.ex1,
-            name = "푸바오3",
-            self_description = "나는야 미판다",
+        A.Friend(
+            profileImage = R.drawable.fubao7,
+            name = "푸바오7",
+            self_description = "루이후이 모여",
             type = "FriendViewHolder"
         ),
-        datas(
-            profileImage = R.drawable.ex1,
-            name = "푸바오3",
-            self_description = "나는야 미판다",
+        A.Friend(
+            profileImage = R.drawable.fubao8,
+            name = "푸바오8",
+            self_description = "나 중국 안가",
             type = "FriendViewHolder"
         ),
-        datas(
-            profileImage = R.drawable.ex1,
-            name = "푸바오3",
-            self_description = "나는야 미판다",
+        A.Friend(
+            profileImage = R.drawable.fubao9,
+            name = "푸바오9",
+            self_description = "가을이다",
             type = "FriendViewHolder"
         ),
-        datas(
-            profileImage = R.drawable.ex1,
-            name = "푸바오3",
-            self_description = "나는야 미판다",
+        A.Friend(
+            profileImage = R.drawable.fubao10,
+            name = "푸바오10",
+            self_description = "나는 뚠뚠이",
             type = "FriendViewHolder"
         ),
-        datas(
-            profileImage = R.drawable.ex1,
-            name = "푸바오3",
-            self_description = "나는야 미판다",
+        A.Friend(
+            profileImage = R.drawable.fubao11,
+            name = "푸바오11",
+            self_description = "좋다~",
             type = "FriendViewHolder"
         ),
 
@@ -112,9 +105,10 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val multiViewTypeAdapter = MultiViewTypeAdapter(mockDataList)
+        Log.e("로그", "$mockFriendList")
+        val multiViewTypeAdapter = MultiViewTypeAdapter(mockFriendList)
         binding.rvFriends.adapter = multiViewTypeAdapter
-        multiViewTypeAdapter.setFriendList(mockDataList)
+        multiViewTypeAdapter.setFriendList(mockFriendList)
     }
 
 }
