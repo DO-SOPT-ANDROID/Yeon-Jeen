@@ -15,8 +15,7 @@ class MultiViewTypeAdapter(private var items: List<Any>) :
     private val VIEW_TYPE_ITEM1 = 1
     private val VIEW_TYPE_ITEM2 = 2
 
-    fun setFriendList(friendList: List<Friend>) {
-        // 데이터 목록을 업데이트하고 어댑터에 알립니다.
+    fun setFriendList(friendList: List<datas>) {
         items = friendList
         notifyDataSetChanged()
     }
@@ -27,11 +26,11 @@ class MultiViewTypeAdapter(private var items: List<Any>) :
         private val tvName: TextView = itemView.findViewById(R.id.im_tv_name)
         private val tvSelfDescription: TextView = itemView.findViewById(R.id.im_tv_self_decription)
 
-        fun bindMyProfile(myProfile: MyProfile) {
+        fun bindMyProfile(myProfile: datas) {
 
-            ivProfile.setImageResource(myProfile.profileImageResId)
+            ivProfile.setImageResource(myProfile.profileImage)
             tvName.text = myProfile.name
-            tvSelfDescription.text = myProfile.selfDescription
+            tvSelfDescription.text = myProfile.self_description
         }
     }
 
@@ -40,7 +39,7 @@ class MultiViewTypeAdapter(private var items: List<Any>) :
         private val tvName: TextView = itemView.findViewById(R.id.tv_name)
         private val tvSelfDescription: TextView = itemView.findViewById(R.id.tv_self_decription)
 
-        fun onBind(friendData: Friend) {
+        fun onBind(friendData: datas) {
             ivProfile.setImageResource(friendData.profileImage)
             tvName.text = friendData.name
             tvSelfDescription.text = friendData.self_description
@@ -83,12 +82,12 @@ class MultiViewTypeAdapter(private var items: List<Any>) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is MyProfileViewHolder -> {
-                val myProfile = items[position] as MyProfile
+                val myProfile = items[position] as datas
                 holder.bindMyProfile(myProfile)
             }
 
             is FriendViewHolder -> {
-                val friendData = items[position] as Friend
+                val friendData = items[position] as datas
                 (holder as FriendViewHolder).onBind(friendData)
             }
         }
@@ -96,13 +95,14 @@ class MultiViewTypeAdapter(private var items: List<Any>) :
 
 
     override fun getItemViewType(position: Int): Int {
-        if (position == 0 && items[position] is MyProfile) {
+        if (position == 0 && items[position] is datas) {
             return VIEW_TYPE_ITEM1
-        } else if (items[position] is Friend) {
+        } else if (items[position] is datas) {
             return VIEW_TYPE_ITEM2
         }
         return VIEW_TYPE_ITEM1
     }
+
 
 //    override fun getItemViewType(position: Int): Int {
 //        if (position == 0 && items[position] is MyProfile) {

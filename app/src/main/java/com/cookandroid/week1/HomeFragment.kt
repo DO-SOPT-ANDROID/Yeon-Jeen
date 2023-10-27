@@ -20,82 +20,88 @@ class HomeFragment : Fragment() {
         //return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-     val myProfile = MyProfile(
-        profileImageResId = R.drawable.my_profile,
-        name = "연진이",
-        selfDescription = "잘 부탁해",
-        type = "MyProfileViewHolder"
-    )
+//     val myProfile = datas(
+//         profileImage = R.drawable.my_profile,
+//         name = "연진이",
+//         self_description = "잘 부탁해",
+//         type = "MyProfileViewHolder"
+//    )
 
 
-    private val mockFriendList = listOf<Friend>(
-        Friend(
+    private val mockDataList = listOf<datas>(
+        datas(
+            profileImage = R.drawable.my_profile,
+            name = "연진이",
+            self_description = "잘 부탁해",
+            type = "MyProfileViewHolder"
+        ),
+        datas(
             profileImage = R.drawable.ex1,
             name = "푸바오1",
             self_description = "할부지가 젤 좋아",
             type = "FriendViewHolder"
         ),
-        Friend(
+        datas(
             profileImage = R.drawable.ex1,
             name = "푸바오2",
             self_description = "당근주세요",
             type = "FriendViewHolder"
         ),
-        Friend(
+        datas(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
             type = "FriendViewHolder"
         ),
-        Friend(
+        datas(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
             type = "FriendViewHolder"
         ),
-        Friend(
+        datas(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
             type = "FriendViewHolder"
         ),
-        Friend(
+        datas(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
             type = "FriendViewHolder"
         ),
-        Friend(
+        datas(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
             type = "FriendViewHolder"
         ),
-        Friend(
+        datas(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
             type = "FriendViewHolder"
         ),
-        Friend(
+        datas(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
             type = "FriendViewHolder"
         ),
-        Friend(
+        datas(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
             type = "FriendViewHolder"
         ),
-        Friend(
+        datas(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
             type = "FriendViewHolder"
         ),
-        Friend(
+        datas(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
@@ -106,9 +112,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val multiViewTypeAdapter = MultiViewTypeAdapter(mockFriendList)
+        val multiViewTypeAdapter = MultiViewTypeAdapter(mockDataList)
         binding.rvFriends.adapter = multiViewTypeAdapter
-        multiViewTypeAdapter.setFriendList(mockFriendList)
+        multiViewTypeAdapter.setFriendList(mockDataList)
     }
 
 }
