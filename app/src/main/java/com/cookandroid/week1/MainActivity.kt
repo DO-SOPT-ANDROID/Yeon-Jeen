@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cookandroid.week1.databinding.ActivityMainBinding
 
+
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var id: String? = null
