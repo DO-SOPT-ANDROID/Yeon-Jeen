@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/YJimg"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="35dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/yeonjeen"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/solid_img"/>
+
+    <TextView
+        android:id="@+id/tNN1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/YJimg"
+        app:layout_constraintTop_toTopOf="@id/YJimg" />
+
+    <TextView
+        android:id="@+id/tMT1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:text="잠은 죽어서 자자"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintLeft_toRightOf="@id/YJimg"
+        app:layout_constraintTop_toBottomOf="@id/tNN1" />
+
+    <TextView
+        android:id="@+id/tID3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="ID"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/YJimg"
+        app:layout_constraintTop_toBottomOf="@id/YJimg" />
+
+    <TextView
+        android:id="@+id/tID4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/tID3"
+        app:layout_constraintTop_toBottomOf="@id/tID3" />
+
+    <TextView
+        android:id="@+id/tAD2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="ADDRESS"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/tID4"
+        app:layout_constraintTop_toBottomOf="@id/tID4" />
+
+    <TextView
+        android:id="@+id/tAD3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/tAD2"
+        app:layout_constraintTop_toBottomOf="@id/tAD2" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

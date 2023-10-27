@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.cookandroid.week1'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.cookandroid.week1"
         minSdk 29
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -74,6 +74,8 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'androidx.fragment:fragment:1.0.0'
+    implementation 'com.google.android.material:material:1.10.0'
 
 
 }
