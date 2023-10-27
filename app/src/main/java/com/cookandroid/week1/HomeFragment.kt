@@ -1,4 +1,5 @@
 package com.cookandroid.week1
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,61 +20,95 @@ class HomeFragment : Fragment() {
         //return super.onCreateView(inflater, container, savedInstanceState)
     }
 
+     val myProfile = MyProfile(
+        profileImageResId = R.drawable.my_profile,
+        name = "연진이",
+        selfDescription = "잘 부탁해",
+        type = "MyProfileViewHolder"
+    )
+
 
     private val mockFriendList = listOf<Friend>(
         Friend(
             profileImage = R.drawable.ex1,
             name = "푸바오1",
             self_description = "할부지가 젤 좋아",
+            type = "FriendViewHolder"
         ),
         Friend(
             profileImage = R.drawable.ex1,
             name = "푸바오2",
             self_description = "당근주세요",
+            type = "FriendViewHolder"
         ),
         Friend(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
+            type = "FriendViewHolder"
         ),
         Friend(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
+            type = "FriendViewHolder"
         ),
         Friend(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
+            type = "FriendViewHolder"
         ),
         Friend(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
+            type = "FriendViewHolder"
         ),
         Friend(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
+            type = "FriendViewHolder"
         ),
         Friend(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
+            type = "FriendViewHolder"
         ),
         Friend(
             profileImage = R.drawable.ex1,
             name = "푸바오3",
             self_description = "나는야 미판다",
+            type = "FriendViewHolder"
+        ),
+        Friend(
+            profileImage = R.drawable.ex1,
+            name = "푸바오3",
+            self_description = "나는야 미판다",
+            type = "FriendViewHolder"
+        ),
+        Friend(
+            profileImage = R.drawable.ex1,
+            name = "푸바오3",
+            self_description = "나는야 미판다",
+            type = "FriendViewHolder"
+        ),
+        Friend(
+            profileImage = R.drawable.ex1,
+            name = "푸바오3",
+            self_description = "나는야 미판다",
+            type = "FriendViewHolder"
         ),
 
         )
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val friendAdapter = FriendAdapter(requireContext())
-        binding.rvFriends.adapter = friendAdapter
-        friendAdapter.setFriendList(mockFriendList)
+        val multiViewTypeAdapter = MultiViewTypeAdapter(mockFriendList)
+        binding.rvFriends.adapter = multiViewTypeAdapter
+        multiViewTypeAdapter.setFriendList(mockFriendList)
     }
+
 }
