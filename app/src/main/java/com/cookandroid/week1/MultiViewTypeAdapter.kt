@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 
 
-class MultiViewTypeAdapter(private var items: List<Any>) :
+class MultiViewTypeAdapter(private var items: List<A>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
@@ -95,11 +95,3 @@ class MultiViewTypeAdapter(private var items: List<Any>) :
     }
 
 }
-
-
-
-
-
-
-
-
