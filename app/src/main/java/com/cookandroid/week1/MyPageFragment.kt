@@ -21,9 +21,9 @@ class MyPageFragment : Fragment() {
         val id = arguments?.getString("id")
         val address = arguments?.getString("address")
 
-        binding.tNN1.text = nickname
-        binding.tID4.text = id
-        binding.tAD3.text = address
+        binding.tvMypageNickname.text = nickname
+        binding.tvMypageEditid.text = id
+        binding.tvMypageEditadress.text = address
 
         return view
     }

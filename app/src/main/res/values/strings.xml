@@ -5,4 +5,20 @@
     <string name="bottom_do_android">Do Android</string>
     <string name="bottom_home">Home</string>
     <string name="bottom_my_page">My Page</string>
+    <string name="tv_self_decription">나는 연진이야 잘 부탁해</string>
+    <string name="im_tv_name">연진이</string>
+    <string name="tv_mypage_selfcription">잠은 죽어서 자자</string>
+    <string name="tv_id">ID</string>
+    <string name="tv_adress">ADDRESS</string>
+    <string name="tv_login_sopt">Welcome to SOPT</string>
+    <string name="et_id">아이디를 입력하세요.</string>
+    <string name="tv_password">비밀번호</string>
+    <string name="et_ps">비밀번호를 입력하세요.</string>
+    <string name="btn_login">로그인하기</string>
+    <string name="btn_sign">회원가입하기</string>
+    <string name="sign_sp">SIGN UP</string>
+    <string name="tv_nickname">닉네임</string>
+    <string name="et_nickname">닉네임을 입력하세요.</string>
+    <string name="tv_ad">거주지</string>
+    <string name="et_ad">거주지를 입력하세요.</string>
 </resources>

@@ -5,79 +5,79 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/title1"
+        android:id="@+id/tv_login_sopt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Welcome to SOPT"
+        android:text="@string/tv_login_sopt"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tID1"
+        android:id="@+id/tv_login_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="ID"
+        android:text="@string/tv_id"
         android:textSize="25sp"
-        app:layout_constraintRight_toLeftOf="@id/title1"
-        app:layout_constraintTop_toBottomOf="@id/title1" />
+        app:layout_constraintRight_toLeftOf="@id/tv_login_sopt"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_sopt" />
 
     <EditText
-        android:id="@+id/eID1"
+        android:id="@+id/et_login_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="15"
-        android:hint="아이디를 입력하세요."
+        android:hint="@string/et_id"
         android:inputType="text"
         android:paddingVertical="20dp"
-        app:layout_constraintStart_toStartOf="@id/tID1"
-        app:layout_constraintTop_toBottomOf="@id/tID1" />
+        app:layout_constraintStart_toStartOf="@id/tv_login_id"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_id" />
 
     <TextView
-        android:id="@+id/tPS1"
+        android:id="@+id/tv_login_ps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="비밀번호"
+        android:text="@string/tv_password"
         android:textSize="25sp"
-        app:layout_constraintLeft_toLeftOf="@id/eID1"
-        app:layout_constraintTop_toBottomOf="@id/eID1" />
+        app:layout_constraintLeft_toLeftOf="@id/et_login_id"
+        app:layout_constraintTop_toBottomOf="@id/et_login_id" />
 
     <EditText
-        android:id="@+id/ePS1"
+        android:id="@+id/et_login_ps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="15"
-        android:hint="비밀번호를 입력하세요."
+        android:hint="@string/et_ps"
         android:inputType="textPassword"
         android:paddingVertical="20dp"
-        app:layout_constraintStart_toStartOf="@id/tPS1"
-        app:layout_constraintTop_toBottomOf="@id/tPS1" />
+        app:layout_constraintStart_toStartOf="@id/tv_login_ps"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_ps" />
 
 
     <Button
-        android:id="@+id/logbtn1"
+        android:id="@+id/btn_login_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="230dp"
         android:background="@drawable/solid_btn"
-        android:text="로그인하기"
+        android:text="@string/btn_login"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/ePS1" />
+        app:layout_constraintTop_toBottomOf="@id/et_login_ps" />
 
     <Button
-        android:id="@+id/signbtn1"
+        android:id="@+id/btn_login_sign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/solid_btn"
-        android:text="회원가입하기"
+        android:text="@string/btn_sign"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/logbtn1" />
+        app:layout_constraintTop_toBottomOf="@id/btn_login_login" />
 
 </android.support.constraint.ConstraintLayout>

@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="연진이"
+        android:text="@string/im_tv_name"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/iv_profile"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:maxLines="1"
-        android:text="나는 연진이야 잘 부탁해"
+        android:text="@string/tv_self_decription"
         app:layout_constraintBottom_toBottomOf="@id/iv_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_profile" />

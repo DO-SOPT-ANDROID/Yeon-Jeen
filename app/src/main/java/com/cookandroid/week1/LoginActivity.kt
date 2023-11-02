@@ -35,14 +35,14 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.signbtn1.setOnClickListener {
+        binding.btnLoginSign.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             loginLauncher.launch(intent)
         }
 
-        binding.logbtn1.setOnClickListener {
-            val enteredId = binding.eID1.text.toString()
-            val enteredPassword = binding.ePS1.text.toString()
+        binding.btnLoginLogin.setOnClickListener {
+            val enteredId = binding.etLoginId.text.toString()
+            val enteredPassword = binding.etLoginPs.text.toString()
 
 
             if (checkLogin(enteredId, enteredPassword)) {
