@@ -17,12 +17,12 @@ class SignUpActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.signbtn2.setOnClickListener {
+        binding.btnSignSign.setOnClickListener {
             if (SignUpRegistration()) {
-                val id = binding.eID2.text.toString()
-                val password = binding.ePS2.text.toString()
-                val nickname = binding.eNN1.text.toString()
-                val address = binding.eAD1.text.toString()
+                val id = binding.etSignId.text.toString()
+                val password = binding.etSignPs.text.toString()
+                val nickname = binding.etSingNn.text.toString()
+                val address = binding.etSignAd.text.toString()
 
                 val intent = Intent(this, LoginActivity::class.java).apply {
                     putExtra("id", id)
@@ -42,10 +42,10 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun SignUpRegistration(): Boolean {
-        val id = binding.eID2.text.toString()
-        val password = binding.ePS2.text.toString()
-        val nickname = binding.eNN1.text.toString()
-        val address = binding.eAD1.text.toString()
+        val id = binding.etSignId.text.toString()
+        val password = binding.etSignPs.text.toString()
+        val nickname = binding.etSingNn.text.toString()
+        val address = binding.etSignAd.text.toString()
 
         val isIdValid = id.length in 6..10
         val isPasswordValid = password.length in 8..12
