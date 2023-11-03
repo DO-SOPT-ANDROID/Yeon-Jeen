@@ -21,7 +21,7 @@ class MultiViewTypeAdapter(private var items: List<A>) :
     }
 
 
-    inner class MyProfileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MyProfileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val ivProfile: ShapeableImageView = itemView.findViewById(R.id.im_iv_profile)
         private val tvName: TextView = itemView.findViewById(R.id.im_tv_name)
         private val tvSelfDescription: TextView = itemView.findViewById(R.id.im_tv_self_decription)
@@ -34,7 +34,7 @@ class MultiViewTypeAdapter(private var items: List<A>) :
         }
     }
 
-    inner class FriendViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class FriendViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val ivProfile: ShapeableImageView = itemView.findViewById(R.id.iv_profile)
         private val tvName: TextView = itemView.findViewById(R.id.tv_name)
         private val tvSelfDescription: TextView = itemView.findViewById(R.id.tv_self_decription)
@@ -90,8 +90,6 @@ class MultiViewTypeAdapter(private var items: List<A>) :
     }
 
 
-    override fun getItemCount(): Int {
-        return items.size + 1
-    }
+    override fun getItemCount()=items.size + 1
 
 }
