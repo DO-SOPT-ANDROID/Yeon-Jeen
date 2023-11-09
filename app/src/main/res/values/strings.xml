@@ -21,4 +21,5 @@
     <string name="et_nickname">닉네임을 입력하세요.</string>
     <string name="tv_ad">거주지</string>
     <string name="et_ad">거주지를 입력하세요.</string>
+    <string name="mbti">MBTI</string>
 </resources>
