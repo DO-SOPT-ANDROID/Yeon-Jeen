@@ -53,7 +53,7 @@ class MyPageFragment : Fragment() {
     }
 
     private fun showDatePicker() {
-        val datePickerDialog = DatePickerDialog(
+        DatePickerDialog(
             requireContext(),
             { _, year, monthOfYear, dayOfMonth ->
 
@@ -65,8 +65,7 @@ class MyPageFragment : Fragment() {
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
             calendar.get(Calendar.DAY_OF_MONTH)
-        )
-        datePickerDialog.show()
+        ).show()
     }
 
     private fun updateDateInView() {
