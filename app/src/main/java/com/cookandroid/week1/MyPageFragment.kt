@@ -53,20 +53,22 @@ class MyPageFragment : Fragment() {
     }
 
     private fun showDatePicker() {
-        DatePickerDialog(
-            requireContext(),
-            { _, year, monthOfYear, dayOfMonth ->
-
+        DatePickerDialog(requireContext()).apply {
+            setOnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 calendar.set(Calendar.YEAR, year)
                 calendar.set(Calendar.MONTH, monthOfYear)
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 updateDateInView()
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        ).show()
+            }
+            updateDate(
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
+            show()
+        }
     }
+
 
     private fun updateDateInView() {
         val myFormat = "yyyy-MM-dd"
