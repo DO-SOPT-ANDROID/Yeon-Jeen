@@ -34,14 +34,16 @@ class MyPageFragment : Fragment() {
         binding.tvMypageEditadress.text = address
 
 
+        mbtiSpinner = binding.spMypageMbti
+
         mbtiSpinner = view.findViewById(R.id.sp_mypage_mbti)
-        val yearAdapter = ArrayAdapter.createFromResource(
+        val mbtiAdapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.mbti_type,
             android.R.layout.simple_spinner_item
         )
-        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        mbtiSpinner.adapter = yearAdapter
+        mbtiAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        mbtiSpinner.adapter = mbtiAdapter
 
         calendar = Calendar.getInstance()
 
