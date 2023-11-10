@@ -22,4 +22,7 @@
     <string name="tv_ad">거주지</string>
     <string name="et_ad">거주지를 입력하세요.</string>
     <string name="mbti">MBTI</string>
+    <string name="my_birthday">My BirthDay</string>
+    <string name="birthday">BIRTHDAY</string>
+    <string name="date">DATE</string>
 </resources>

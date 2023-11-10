@@ -1,5 +1,6 @@
 package com.cookandroid.week1
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +9,14 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import com.cookandroid.week1.databinding.FragmentMyPageBinding
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class MyPageFragment : Fragment() {
     private lateinit var binding: FragmentMyPageBinding
     private lateinit var mbtiSpinner: Spinner
+    private lateinit var calendar: Calendar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +33,7 @@ class MyPageFragment : Fragment() {
         binding.tvMypageEditid.text = id
         binding.tvMypageEditadress.text = address
 
+
         mbtiSpinner = view.findViewById(R.id.sp_mypage_mbti)
         val yearAdapter = ArrayAdapter.createFromResource(
             requireContext(),
@@ -37,10 +43,37 @@ class MyPageFragment : Fragment() {
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mbtiSpinner.adapter = yearAdapter
 
+        calendar = Calendar.getInstance()
+
+        binding.btnMypageDate.setOnClickListener {
+            showDatePicker()
+        }
+
         return view
     }
 
+    private fun showDatePicker() {
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, year, monthOfYear, dayOfMonth ->
 
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, monthOfYear)
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                updateDateInView()
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        datePickerDialog.show()
+    }
+
+    private fun updateDateInView() {
+        val myFormat = "yyyy-MM-dd"
+        val sdf = SimpleDateFormat(myFormat, Locale.KOREA)
+        binding.tvMypagePickdate.text = sdf.format(calendar.time)
+    }
 
 
 }
