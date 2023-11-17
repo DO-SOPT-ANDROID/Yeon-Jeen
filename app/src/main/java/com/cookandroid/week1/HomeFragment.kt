@@ -13,14 +13,15 @@ import retrofit2.Response
 
 
 class HomeFragment : Fragment() {
-    private lateinit var binding: FragmentHomeBinding
 
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var multiViewTypeAdapter: MultiViewTypeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }

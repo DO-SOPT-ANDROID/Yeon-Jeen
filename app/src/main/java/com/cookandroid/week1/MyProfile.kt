@@ -11,7 +11,7 @@ sealed class A{
         val type: String,): A()
 
     data class Friend(
-        @DrawableRes val profileImage: Int,
+        val profileImage: String,
         val name: String,
         val self_description: String,
         val type: String,
