@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
 
+//        applicationContext.resources.getString(R.string.)
+
         clickBottomNavigation()
     }
 
