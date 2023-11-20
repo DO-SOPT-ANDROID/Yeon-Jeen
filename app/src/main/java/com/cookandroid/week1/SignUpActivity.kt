@@ -60,7 +60,11 @@ class SignUpActivity : AppCompatActivity() {
                             putExtra("address", address)
                         }
 
-                        Toast.makeText(this@SignUpActivity, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            this@SignUpActivity,
+                            getString(R.string.sucsingup),
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
 
                         startActivity(intent)
@@ -68,7 +72,11 @@ class SignUpActivity : AppCompatActivity() {
                     }
                     //ww1234
                     else {
-                        Toast.makeText(this@SignUpActivity, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            this@SignUpActivity,
+                            getString(R.string.failsignup),
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
                     }
                 }

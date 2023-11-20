@@ -25,4 +25,8 @@
     <string name="my_birthday">My BirthDay</string>
     <string name="birthday">BIRTHDAY</string>
     <string name="date">DATE</string>
+    <string name="suclogin">로그인에 성공하셨습니다.</string>
+    <string name="faillogin">로그인에 실패하셨습니다.</string>
+    <string name="sucsingup">회원가입에 성공했습니다.</string>
+    <string name="failsignup">회원가입에 실패하셨습니다.</string>
 </resources>

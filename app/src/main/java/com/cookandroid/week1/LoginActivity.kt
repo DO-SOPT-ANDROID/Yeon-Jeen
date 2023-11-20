@@ -65,14 +65,14 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                         Toast.makeText(
                             this@LoginActivity,
-                            "로그인에 성공하셨습니다.",
+                            getString(R.string.suclogin),
                             Toast.LENGTH_SHORT
                         ).show()
 
                     } else {
                         Toast.makeText(
                             this@LoginActivity,
-                            "로그인에 실패하셨습니다.",
+                            getString(R.string.faillogin),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
