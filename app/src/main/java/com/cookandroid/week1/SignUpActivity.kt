@@ -2,6 +2,7 @@ package com.cookandroid.week1
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.cookandroid.week1.databinding.ActivitySignupBinding
@@ -70,7 +71,6 @@ class SignUpActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     }
-                    //ww1234
                     else {
                         Toast.makeText(
                             this@SignUpActivity,
@@ -82,7 +82,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<Unit>, t: Throwable) {
-                    t.printStackTrace()
+                    Log.e("failure", "서버 연결 실패", t)
                 }
             }
         )
