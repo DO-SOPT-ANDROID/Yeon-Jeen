@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
 
                         userListResponse?.let { userResponse ->
                             val friendList = userResponse.data.map {
-                                A.Friend(
+                                UserInformation.Friend(
                                     profileImage = it.avatar,
                                     name = "${it.first_name} ${it.last_name}",
                                     type = "",

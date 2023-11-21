@@ -3,12 +3,13 @@ package com.cookandroid.week1
 import androidx.annotation.DrawableRes
 
 
-sealed class A{
+sealed class UserInformation {
     data class MyProfile(
         @DrawableRes val profileImageResId: Int,
         val name: String,
         val selfDescription: String,
-        val type: String,): A()
+        val type: String,
+    ) : UserInformation()
 
     data class Friend(
         val profileImage: String,
@@ -16,7 +17,7 @@ sealed class A{
         val self_description: String,
         val type: String,
 
-        ): A()
+        ) : UserInformation()
 }
 
 
