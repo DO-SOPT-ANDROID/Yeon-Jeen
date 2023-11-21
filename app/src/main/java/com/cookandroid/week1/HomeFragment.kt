@@ -59,8 +59,6 @@ class HomeFragment : Fragment() {
                             }
                             multiViewTypeAdapter.setFriendList(friendList)
                         }
-
-
                     } else {
                         Log.e("getusers", response.errorBody().toString())
                     }
