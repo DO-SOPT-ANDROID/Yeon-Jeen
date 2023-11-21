@@ -1,12 +1,10 @@
 package com.cookandroid.week1
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.imageview.ShapeableImageView
+import com.cookandroid.week1.databinding.ItemFriendBinding
 
 
 class MultiViewTypeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -18,10 +16,14 @@ class MultiViewTypeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    class FriendViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val ivProfile: ShapeableImageView = itemView.findViewById(R.id.iv_profile)
-        private val tvName: TextView = itemView.findViewById(R.id.tv_name)
-        private val tvSelfDescription: TextView = itemView.findViewById(R.id.tv_self_decription)
+
+    class FriendViewHolder(private val binding: ItemFriendBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        private val ivProfile = binding.ivProfile
+        private val tvName = binding.tvName
+        private val tvSelfDescription = binding.tvSelfDecription
+
 
         fun onBind(friendData: A.Friend) {
             Glide.with(itemView)
@@ -33,9 +35,10 @@ class MultiViewTypeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_friend, parent, false)
-        return FriendViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = ItemFriendBinding.inflate(inflater, parent, false)
+        return FriendViewHolder(binding)
     }
 
 
