@@ -6,6 +6,8 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.cookandroid.week1.databinding.ActivityLoginBinding
+import retrofit2.Call
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -43,34 +45,42 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLoginLogin.setOnClickListener {
             val enteredId = binding.etLoginId.text.toString()
             val enteredPassword = binding.etLoginPs.text.toString()
-
-
-            if (checkLogin(enteredId, enteredPassword)) {
-                val intent = Intent(this, MainActivity::class.java).apply {
-                    putExtra("id", enteredId)
-                    val nickname = intent.getStringExtra("nickname")
-                    putExtra("nickname", nickname)
-
-                    val address = intent.getStringExtra("address")
-                    putExtra("address", address)
-
-
-                }
-                startActivity(intent)
-                Toast.makeText(this, "로그인에 성공하셨습니다.", Toast.LENGTH_SHORT).show()
-
-            } else {
-                Toast.makeText(this, "로그인에 실패하셨습니다.", Toast.LENGTH_SHORT).show()
-            }
+            signIn(enteredId, enteredPassword)
         }
     }
 
-    private fun checkLogin(enteredId: String, enteredPassword: String): Boolean {
 
-        val registeredId = intent.getStringExtra("id")
-        val registeredPassword = intent.getStringExtra("password")
+    private fun signIn(id: String, password: String) {
+        ServicePool.authService.login(ProfileRequest(id, password)).enqueue(
+            object : retrofit2.Callback<ProfileRespond> {
+                override fun onResponse(
+                    call: Call<ProfileRespond>,
+                    response: Response<ProfileRespond>
+                ) {
+                    if (response.isSuccessful) {
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
+                            putExtra("id", response.body()?.id)
+                            putExtra("nickname", response.body()?.id)
+                        }
+                        startActivity(intent)
+                        Toast.makeText(
+                            this@LoginActivity,
+                            getString(R.string.suclogin),
+                            Toast.LENGTH_SHORT
+                        ).show()
 
-        return enteredId == registeredId && enteredPassword == registeredPassword
+                    } else {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            getString(R.string.faillogin),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ProfileRespond>, t: Throwable) {}
+            }
+        )
     }
 
 }

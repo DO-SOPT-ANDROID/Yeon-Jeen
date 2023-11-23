@@ -2,9 +2,12 @@ package com.cookandroid.week1
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.cookandroid.week1.databinding.ActivitySignupBinding
+import retrofit2.Call
+import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
@@ -24,17 +27,8 @@ class SignUpActivity : AppCompatActivity() {
                 val nickname = binding.etSingNn.text.toString()
                 val address = binding.etSignAd.text.toString()
 
-                val intent = Intent(this, LoginActivity::class.java).apply {
-                    putExtra("id", id)
-                    putExtra("password", password)
-                    putExtra("nickname", nickname)
-                    putExtra("address", address)
-                }
+                signUp(password, id, nickname, address)
 
-                Toast.makeText(this, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show()
-
-                startActivity(intent)
-                finish()
             } else {
                 Toast.makeText(this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show()
             }
@@ -53,6 +47,45 @@ class SignUpActivity : AppCompatActivity() {
         val isAddressValid = address.isNotBlank() && !address.matches(Regex("\\s+"))
 
         return isIdValid && isPasswordValid && isNicknameValid && isAddressValid
+    }
+
+    private fun signUp(password: String, id: String, nickname: String, address: String) {
+        ServicePool.authService.signup(SignUpRequest(id, nickname, password)).enqueue(
+            object : retrofit2.Callback<Unit> {
+                override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                    if (response.isSuccessful) {
+                        val intent = Intent(this@SignUpActivity, LoginActivity::class.java).apply {
+                            putExtra("id", id)
+                            putExtra("password", password)
+                            putExtra("nickname", nickname)
+                            putExtra("address", address)
+                        }
+
+                        Toast.makeText(
+                            this@SignUpActivity,
+                            getString(R.string.sucsingup),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+
+                        startActivity(intent)
+                        finish()
+                    }
+                    else {
+                        Toast.makeText(
+                            this@SignUpActivity,
+                            getString(R.string.failsignup),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                }
+
+                override fun onFailure(call: Call<Unit>, t: Throwable) {
+                    Log.e("failure", "서버 연결 실패", t)
+                }
+            }
+        )
     }
 }
 
