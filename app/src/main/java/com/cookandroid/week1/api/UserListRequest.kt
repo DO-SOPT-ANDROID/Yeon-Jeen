@@ -1,10 +1,10 @@
-package com.cookandroid.week1
+package com.cookandroid.week1.api
 
 import kotlinx.serialization.SerialName
 
 data class UserListRequest(
     @SerialName("page")
-    val page: Int=1,
+    val page: Int = 1,
     @SerialName("per_page")
     val per_page: Int,
     @SerialName("total")
@@ -14,7 +14,6 @@ data class UserListRequest(
     @SerialName("data")
     val data: List<UserListResponse>,
     @SerialName("support")
-    val support: SupportRespond
-
+    val support: SupportRespond,
 
 )

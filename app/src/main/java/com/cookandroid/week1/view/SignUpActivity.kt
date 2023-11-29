@@ -1,10 +1,13 @@
-package com.cookandroid.week1
+package com.cookandroid.week1.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.cookandroid.week1.R
+import com.cookandroid.week1.api.ServicePool
+import com.cookandroid.week1.api.SignUpRequest
 import com.cookandroid.week1.databinding.ActivitySignupBinding
 import retrofit2.Call
 import retrofit2.Response
@@ -28,7 +31,6 @@ class SignUpActivity : AppCompatActivity() {
                 val address = binding.etSignAd.text.toString()
 
                 signUp(password, id, nickname, address)
-
             } else {
                 Toast.makeText(this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show()
             }
@@ -64,18 +66,17 @@ class SignUpActivity : AppCompatActivity() {
                         Toast.makeText(
                             this@SignUpActivity,
                             getString(R.string.sucsingup),
-                            Toast.LENGTH_SHORT
+                            Toast.LENGTH_SHORT,
                         )
                             .show()
 
                         startActivity(intent)
                         finish()
-                    }
-                    else {
+                    } else {
                         Toast.makeText(
                             this@SignUpActivity,
                             getString(R.string.failsignup),
-                            Toast.LENGTH_SHORT
+                            Toast.LENGTH_SHORT,
                         )
                             .show()
                     }
@@ -84,10 +85,7 @@ class SignUpActivity : AppCompatActivity() {
                 override fun onFailure(call: Call<Unit>, t: Throwable) {
                     Log.e("failure", "서버 연결 실패", t)
                 }
-            }
+            },
         )
     }
 }
-
-
-

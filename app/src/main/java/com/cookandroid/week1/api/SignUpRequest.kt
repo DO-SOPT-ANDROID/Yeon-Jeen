@@ -1,4 +1,4 @@
-package com.cookandroid.week1
+package com.cookandroid.week1.api
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -10,6 +10,5 @@ data class SignUpRequest(
     @SerialName("nickname")
     val nickname: String,
     @SerialName("password")
-    val password: String
+    val password: String,
 )
-

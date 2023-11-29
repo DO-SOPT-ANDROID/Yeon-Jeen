@@ -1,11 +1,10 @@
-package com.cookandroid.week1
+package com.cookandroid.week1.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.cookandroid.week1.R
 import com.cookandroid.week1.databinding.ActivityMainBinding
-
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,11 +17,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         id = intent.getStringExtra("id")
         nickname = intent.getStringExtra("nickname")
         address = intent.getStringExtra("address")
-
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -43,7 +40,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_mypage -> {
                     val myPageFragment = MyPageFragment()
 
-
                     val bundle = Bundle()
                     bundle.putString("id", id)
                     bundle.putString("nickname", nickname)
@@ -56,7 +52,6 @@ class MainActivity : AppCompatActivity() {
                 else -> HomeFragment()
             }
 
-
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fcv_home, fragment)
                 .commit()
@@ -65,5 +60,3 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-
-

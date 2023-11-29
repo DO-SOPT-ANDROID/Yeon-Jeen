@@ -1,4 +1,4 @@
-package com.cookandroid.week1
+package com.cookandroid.week1.view
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import com.cookandroid.week1.R
 import com.cookandroid.week1.databinding.FragmentMyPageBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -19,8 +20,9 @@ class MyPageFragment : Fragment() {
     private lateinit var calendar: Calendar
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentMyPageBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -33,14 +35,13 @@ class MyPageFragment : Fragment() {
         binding.tvMypageEditid.text = id
         binding.tvMypageEditadress.text = address
 
-
         mbtiSpinner = binding.spMypageMbti
 
         mbtiSpinner = view.findViewById(R.id.sp_mypage_mbti)
         val mbtiAdapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.mbti_type,
-            android.R.layout.simple_spinner_item
+            android.R.layout.simple_spinner_item,
         )
         mbtiAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mbtiSpinner.adapter = mbtiAdapter
@@ -65,18 +66,15 @@ class MyPageFragment : Fragment() {
             updateDate(
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
+                calendar.get(Calendar.DAY_OF_MONTH),
             )
             show()
         }
     }
-
 
     private fun updateDateInView() {
         val myFormat = "yyyy-MM-dd"
         val sdf = SimpleDateFormat(myFormat, Locale.KOREA)
         binding.tvMypagePickdate.text = sdf.format(calendar.time)
     }
-
-
 }

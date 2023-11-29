@@ -1,7 +1,6 @@
-package com.cookandroid.week1
+package com.cookandroid.week1.data
 
 import androidx.annotation.DrawableRes
-
 
 data class Friend(
     @DrawableRes val profileImage: Int,
@@ -9,4 +8,4 @@ data class Friend(
     val self_description: String,
     val type: String,
 
-    )
+)

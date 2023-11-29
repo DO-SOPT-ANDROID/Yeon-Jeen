@@ -1,10 +1,14 @@
-package com.cookandroid.week1
+package com.cookandroid.week1.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.cookandroid.week1.R
+import com.cookandroid.week1.api.ProfileRequest
+import com.cookandroid.week1.api.ProfileRespond
+import com.cookandroid.week1.api.ServicePool
 import com.cookandroid.week1.databinding.ActivityLoginBinding
 import retrofit2.Call
 import retrofit2.Response
@@ -29,7 +33,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -49,13 +52,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-
     private fun signIn(id: String, password: String) {
         ServicePool.authService.login(ProfileRequest(id, password)).enqueue(
             object : retrofit2.Callback<ProfileRespond> {
                 override fun onResponse(
                     call: Call<ProfileRespond>,
-                    response: Response<ProfileRespond>
+                    response: Response<ProfileRespond>,
                 ) {
                     if (response.isSuccessful) {
                         val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
@@ -66,24 +68,19 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(
                             this@LoginActivity,
                             getString(R.string.suclogin),
-                            Toast.LENGTH_SHORT
+                            Toast.LENGTH_SHORT,
                         ).show()
-
                     } else {
                         Toast.makeText(
                             this@LoginActivity,
                             getString(R.string.faillogin),
-                            Toast.LENGTH_SHORT
+                            Toast.LENGTH_SHORT,
                         ).show()
                     }
                 }
 
                 override fun onFailure(call: Call<ProfileRespond>, t: Throwable) {}
-            }
+            },
         )
     }
-
 }
-
-
-

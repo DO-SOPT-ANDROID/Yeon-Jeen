@@ -1,4 +1,4 @@
-package com.cookandroid.week1
+package com.cookandroid.week1.api
 
 import retrofit2.Call
 import retrofit2.http.Body
@@ -14,6 +14,4 @@ interface AuthService {
     fun login(
         @Body request: ProfileRequest,
     ): Call<ProfileRespond>
-
 }
-

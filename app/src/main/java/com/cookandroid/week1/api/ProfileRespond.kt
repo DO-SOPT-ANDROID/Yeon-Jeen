@@ -1,5 +1,4 @@
-package com.cookandroid.week1
-
+package com.cookandroid.week1.api
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -11,5 +10,5 @@ data class ProfileRespond(
     @SerialName("nickname")
     val nickname: String,
     @SerialName("username")
-    val username: String
+    val username: String,
 )
