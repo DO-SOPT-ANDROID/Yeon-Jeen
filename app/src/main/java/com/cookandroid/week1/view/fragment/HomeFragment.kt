@@ -1,4 +1,4 @@
-package com.cookandroid.week1.view
+package com.cookandroid.week1.view.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.cookandroid.week1.MultiViewTypeAdapter
 import com.cookandroid.week1.api.ServicePool
-import com.cookandroid.week1.api.UserListResponse
+import com.cookandroid.week1.api.respond.UserListResponse
 import com.cookandroid.week1.data.UserInformation
 import com.cookandroid.week1.databinding.FragmentHomeBinding
 import retrofit2.Call
@@ -67,7 +67,7 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<UserListResponse>, t: Throwable) {
-                    t.printStackTrace()
+                    Log.e("failure", "서버 연결 실패", t)
                 }
             },
         )

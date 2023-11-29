@@ -1,5 +1,7 @@
-package com.cookandroid.week1.api
+package com.cookandroid.week1.api.request
 
+import com.cookandroid.week1.api.respond.SupportRespond
+import com.cookandroid.week1.api.respond.UserListResponse
 import kotlinx.serialization.SerialName
 
 data class UserListRequest(

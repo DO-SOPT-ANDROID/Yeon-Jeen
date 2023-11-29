@@ -1,4 +1,4 @@
-package com.cookandroid.week1.api
+package com.cookandroid.week1.api.respond
 
 import kotlinx.serialization.SerialName
 

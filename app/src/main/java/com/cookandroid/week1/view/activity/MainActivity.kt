@@ -1,10 +1,13 @@
-package com.cookandroid.week1.view
+package com.cookandroid.week1.view.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cookandroid.week1.R
 import com.cookandroid.week1.databinding.ActivityMainBinding
+import com.cookandroid.week1.view.fragment.DoAndroidFragment
+import com.cookandroid.week1.view.fragment.HomeFragment
+import com.cookandroid.week1.view.fragment.MyPageFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -26,8 +29,6 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.fcv_home, HomeFragment())
                 .commit()
         }
-
-//        applicationContext.resources.getString(R.string.)
 
         clickBottomNavigation()
     }
