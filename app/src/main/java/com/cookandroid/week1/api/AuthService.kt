@@ -1,5 +1,8 @@
 package com.cookandroid.week1.api
 
+import com.cookandroid.week1.api.request.ProfileRequest
+import com.cookandroid.week1.api.request.SignUpRequest
+import com.cookandroid.week1.api.respond.ProfileRespond
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
