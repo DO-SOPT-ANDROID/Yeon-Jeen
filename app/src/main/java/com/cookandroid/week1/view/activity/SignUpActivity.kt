@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.cookandroid.week1.R
 import com.cookandroid.week1.databinding.ActivitySignupBinding
@@ -72,11 +73,37 @@ class SignUpActivity : AppCompatActivity() {
         val nickname = binding.etSingNn.text.toString()
         val address = binding.etSignAd.text.toString()
 
-        val isIdValid = id.length in 6..10
-        val isPasswordValid = password.length in 8..12
+        val idPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,10}$".toRegex()
+        val passwordPattern =
+            "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~`!@#\$%^&*()\\-_=+\\\\|\\[{\\]};:'\",<.>/?]).{6,12}$".toRegex()
+
+        val isIdValid = id.matches(idPattern)
+        val isPasswordValid = password.matches(passwordPattern)
         val isNicknameValid = nickname.isNotBlank() && !nickname.matches(Regex("\\s+"))
         val isAddressValid = address.isNotBlank() && !address.matches(Regex("\\s+"))
 
-        return isIdValid && isPasswordValid && isNicknameValid && isAddressValid
+        val isFieldsValid = isIdValid && isPasswordValid
+
+        if (isFieldsValid) {
+            binding.btnSignSign.isEnabled = true
+            binding.btnSignSign.isClickable = true
+            binding.btnSignSign.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.active_button_color,
+                ),
+            )
+        } else {
+            binding.btnSignSign.isEnabled = false
+            binding.btnSignSign.isClickable = false
+            binding.btnSignSign.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.inactive_button_color,
+                ),
+            )
+        }
+
+        return isFieldsValid
     }
 }
