@@ -1,5 +1,6 @@
 package com.cookandroid.week1.api
 
+import com.cookandroid.week1.api.respond.UserListResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
