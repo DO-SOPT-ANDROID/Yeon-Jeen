@@ -22,6 +22,7 @@ class SignUpActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+
         signUpViewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
 
         binding.btnSignSign.setOnClickListener {
@@ -90,7 +91,7 @@ class SignUpActivity : AppCompatActivity() {
             binding.btnSignSign.setBackgroundColor(
                 ContextCompat.getColor(
                     this,
-                    R.color.active_button_color,
+                    R.color.active_button,
                 ),
             )
         } else {
@@ -99,11 +100,11 @@ class SignUpActivity : AppCompatActivity() {
             binding.btnSignSign.setBackgroundColor(
                 ContextCompat.getColor(
                     this,
-                    R.color.inactive_button_color,
+                    R.color.inactive_button,
                 ),
             )
         }
 
-        return isFieldsValid
+        return isFieldsValid && isNicknameValid && isAddressValid
     }
 }
