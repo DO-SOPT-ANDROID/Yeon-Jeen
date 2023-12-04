@@ -2,6 +2,8 @@ package com.cookandroid.week1.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -24,6 +26,22 @@ class SignUpActivity : AppCompatActivity() {
 
 
         signUpViewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
+
+        binding.etSignId.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                updateButtonState()
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        binding.etSignPs.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                updateButtonState()
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
 
         binding.btnSignSign.setOnClickListener {
             if (SignUpRegistration()) {
@@ -67,44 +85,40 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun SignUpRegistration(): Boolean {
         val id = binding.etSignId.text.toString()
         val password = binding.etSignPs.text.toString()
         val nickname = binding.etSingNn.text.toString()
         val address = binding.etSignAd.text.toString()
 
-        val idPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,10}$".toRegex()
-        val passwordPattern =
-            "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~`!@#\$%^&*()\\-_=+\\\\|\\[{\\]};:'\",<.>/?]).{6,12}$".toRegex()
-
-        val isIdValid = id.matches(idPattern)
-        val isPasswordValid = password.matches(passwordPattern)
+        val isIdValid = id.matches(ID_PATTERN.toRegex())
+        val isPasswordValid = password.matches(PASSWORD_PATTERN.toRegex())
         val isNicknameValid = nickname.isNotBlank() && !nickname.matches(Regex("\\s+"))
         val isAddressValid = address.isNotBlank() && !address.matches(Regex("\\s+"))
 
-        val isFieldsValid = isIdValid && isPasswordValid
+        return isIdValid && isPasswordValid && isNicknameValid && isAddressValid
+    }
 
-        if (isFieldsValid) {
-            binding.btnSignSign.isEnabled = true
-            binding.btnSignSign.isClickable = true
-            binding.btnSignSign.setBackgroundColor(
-                ContextCompat.getColor(
-                    this,
-                    R.color.active_button,
-                ),
-            )
-        } else {
-            binding.btnSignSign.isEnabled = false
-            binding.btnSignSign.isClickable = false
-            binding.btnSignSign.setBackgroundColor(
-                ContextCompat.getColor(
-                    this,
-                    R.color.inactive_button,
-                ),
-            )
-        }
+    private fun updateButtonState() {
+        val isIdValid = binding.etSignId.text.toString().matches(ID_PATTERN.toRegex())
+        val isPasswordValid = binding.etSignPs.text.toString().matches(PASSWORD_PATTERN.toRegex())
 
-        return isFieldsValid && isNicknameValid && isAddressValid
+        val isButtonEnabled = isIdValid && isPasswordValid &&
+                binding.etSignId.text.isNotBlank() && binding.etSignPs.text.isNotBlank()
+
+        binding.btnSignSign.isEnabled = isButtonEnabled
+        binding.btnSignSign.backgroundTintList = ContextCompat.getColorStateList(
+            this,
+            if (isButtonEnabled) R.color.active_button
+            else R.color.inactive_button
+        )
+    }
+
+    companion object {
+        private const val ID_PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,10}$"
+        private const val PASSWORD_PATTERN =
+            "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~`!@#\$%^&*()\\-_=+\\\\|\\[{\\]};:'\",<.>/?]).{6,12}$"
     }
 }
+
+

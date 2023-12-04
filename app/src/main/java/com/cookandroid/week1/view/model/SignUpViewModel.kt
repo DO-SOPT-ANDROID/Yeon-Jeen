@@ -9,7 +9,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SignUpViewModel : ViewModel() {
-    val signUpResult: MutableLiveData<Boolean> = MutableLiveData()
+    val signUpResult = MutableLiveData<Boolean>()
+    val isIdValid: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isPasswordValid: MutableLiveData<Boolean> = MutableLiveData(false)
     private val authService = ServicePool.authService
 
     fun signUp(password: String, id: String, nickname: String, address: String) {
@@ -22,5 +24,15 @@ class SignUpViewModel : ViewModel() {
                 signUpResult.value = false
             }
         })
+    }
+    fun onIdChanged(id: String) {
+        val idPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,10}$".toRegex()
+        isIdValid.value = id.matches(idPattern)
+    }
+
+    // 비밀번호 변경 감지
+    fun onPasswordChanged(password: String) {
+        val passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~`!@#\$%^&*()\\-_=+\\\\|\\[{\\]};:'\",<.>/?]).{6,12}$".toRegex()
+        isPasswordValid.value = password.matches(passwordPattern)
     }
 }
