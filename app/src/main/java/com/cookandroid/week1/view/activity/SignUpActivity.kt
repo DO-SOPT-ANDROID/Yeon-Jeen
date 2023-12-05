@@ -24,11 +24,16 @@ class SignUpActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
         signUpViewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
 
+        setupListeners()
+        observeSignUpResult()
+
+    }
+    private fun setupListeners() {
         binding.etSignId.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
+                signUpViewModel.onIdChanged(s.toString())
                 updateButtonState()
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -37,6 +42,7 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.etSignPs.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
+                signUpViewModel.onPasswordChanged(s.toString())
                 updateButtonState()
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -55,6 +61,8 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    private fun observeSignUpResult() {
         signUpViewModel.signUpResult.observe(this) { success ->
             if (success) {
                 val id = binding.etSignId.text.toString()
@@ -91,22 +99,21 @@ class SignUpActivity : AppCompatActivity() {
         val nickname = binding.etSingNn.text.toString()
         val address = binding.etSignAd.text.toString()
 
-        val isIdValid = id.matches(ID_PATTERN.toRegex())
-        val isPasswordValid = password.matches(PASSWORD_PATTERN.toRegex())
+        val isIdValid = signUpViewModel.isIdValid.value ?: false
+        val isPasswordValid = signUpViewModel.isPasswordValid.value ?: false
         val isNicknameValid = nickname.isNotBlank() && !nickname.matches(Regex("\\s+"))
         val isAddressValid = address.isNotBlank() && !address.matches(Regex("\\s+"))
 
         return isIdValid && isPasswordValid && isNicknameValid && isAddressValid
     }
-
     private fun updateButtonState() {
         val id = binding.etSignId.text.toString()
         val password = binding.etSignPs.text.toString()
         val nickname = binding.etSingNn.text.toString()
         val address = binding.etSignAd.text.toString()
 
-        val isIdValid = id.matches(ID_PATTERN.toRegex())
-        val isPasswordValid = password.matches(PASSWORD_PATTERN.toRegex())
+        val isIdValid = signUpViewModel.isIdValid.value ?: false
+        val isPasswordValid = signUpViewModel.isPasswordValid.value ?: false
         val isNicknameValid = nickname.isNotBlank() && !nickname.matches(Regex("\\s+"))
         val isAddressValid = address.isNotBlank() && !address.matches(Regex("\\s+"))
 
@@ -120,18 +127,14 @@ class SignUpActivity : AppCompatActivity() {
                 this,
                 R.color.warning_color
             )
-            // Show warning message for invalid password
             binding.etSignPs.error = getString(R.string.invalid_ps_message)
         } else {
             binding.etSignPs.backgroundTintList = ContextCompat.getColorStateList(
                 this,
                 R.color.white
             )
-            binding.etSignPs.error = null // Clear the error message
+            binding.etSignPs.error = null
         }
-
-        // Other fields validation logic goes here...
-
         binding.btnSignSign.backgroundTintList = ContextCompat.getColorStateList(
             this,
             if (isButtonEnabled) R.color.active_button
@@ -139,12 +142,6 @@ class SignUpActivity : AppCompatActivity() {
         )
     }
 
-
-    companion object {
-        private const val ID_PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,10}$"
-        private const val PASSWORD_PATTERN =
-            "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~`!@#\$%^&*()\\-_=+\\\\|\\[{\\]};:'\",<.>/?]).{6,12}$"
-    }
 }
 
 

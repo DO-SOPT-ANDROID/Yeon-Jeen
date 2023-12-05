@@ -33,4 +33,5 @@ class SignUpViewModel : ViewModel() {
         val passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~`!@#\$%^&*()\\-_=+\\\\|\\[{\\]};:'\",<.>/?]).{6,12}$".toRegex()
         isPasswordValid.value = password.matches(passwordPattern)
     }
+
 }
