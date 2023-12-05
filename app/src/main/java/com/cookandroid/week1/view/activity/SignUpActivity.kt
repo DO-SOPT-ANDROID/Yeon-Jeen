@@ -100,19 +100,45 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun updateButtonState() {
-        val isIdValid = binding.etSignId.text.toString().matches(ID_PATTERN.toRegex())
-        val isPasswordValid = binding.etSignPs.text.toString().matches(PASSWORD_PATTERN.toRegex())
+        val id = binding.etSignId.text.toString()
+        val password = binding.etSignPs.text.toString()
+        val nickname = binding.etSingNn.text.toString()
+        val address = binding.etSignAd.text.toString()
+
+        val isIdValid = id.matches(ID_PATTERN.toRegex())
+        val isPasswordValid = password.matches(PASSWORD_PATTERN.toRegex())
+        val isNicknameValid = nickname.isNotBlank() && !nickname.matches(Regex("\\s+"))
+        val isAddressValid = address.isNotBlank() && !address.matches(Regex("\\s+"))
 
         val isButtonEnabled = isIdValid && isPasswordValid &&
                 binding.etSignId.text.isNotBlank() && binding.etSignPs.text.isNotBlank()
 
         binding.btnSignSign.isEnabled = isButtonEnabled
+
+        if (!isPasswordValid) {
+            binding.etSignPs.backgroundTintList = ContextCompat.getColorStateList(
+                this,
+                R.color.warning_color
+            )
+            // Show warning message for invalid password
+            binding.etSignPs.error = getString(R.string.invalid_ps_message)
+        } else {
+            binding.etSignPs.backgroundTintList = ContextCompat.getColorStateList(
+                this,
+                R.color.white
+            )
+            binding.etSignPs.error = null // Clear the error message
+        }
+
+        // Other fields validation logic goes here...
+
         binding.btnSignSign.backgroundTintList = ContextCompat.getColorStateList(
             this,
             if (isButtonEnabled) R.color.active_button
             else R.color.inactive_button
         )
     }
+
 
     companion object {
         private const val ID_PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,10}$"

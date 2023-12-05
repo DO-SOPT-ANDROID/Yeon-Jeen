@@ -29,8 +29,6 @@ class SignUpViewModel : ViewModel() {
         val idPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,10}$".toRegex()
         isIdValid.value = id.matches(idPattern)
     }
-
-    // 비밀번호 변경 감지
     fun onPasswordChanged(password: String) {
         val passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~`!@#\$%^&*()\\-_=+\\\\|\\[{\\]};:'\",<.>/?]).{6,12}$".toRegex()
         isPasswordValid.value = password.matches(passwordPattern)

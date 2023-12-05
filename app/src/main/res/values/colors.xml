@@ -9,4 +9,5 @@
     <color name="white">#FFFFFF</color>
     <color name="active_button">#986EE3</color>
     <color name="inactive_button">#777679</color>
+    <color name="warning_color">#F80606</color>
 </resources>
