@@ -30,12 +30,14 @@ class SignUpActivity : AppCompatActivity() {
         observeSignUpResult()
 
     }
+
     private fun setupListeners() {
         binding.etSignId.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 signUpViewModel.onIdChanged(s.toString())
                 updateButtonState()
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
@@ -45,6 +47,7 @@ class SignUpActivity : AppCompatActivity() {
                 signUpViewModel.onPasswordChanged(s.toString())
                 updateButtonState()
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
@@ -62,6 +65,7 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun observeSignUpResult() {
         signUpViewModel.signUpResult.observe(this) { success ->
             if (success) {
@@ -93,6 +97,7 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun SignUpRegistration(): Boolean {
         val id = binding.etSignId.text.toString()
         val password = binding.etSignPs.text.toString()
@@ -106,6 +111,7 @@ class SignUpActivity : AppCompatActivity() {
 
         return isIdValid && isPasswordValid && isNicknameValid && isAddressValid
     }
+
     private fun updateButtonState() {
         val id = binding.etSignId.text.toString()
         val password = binding.etSignPs.text.toString()
@@ -117,21 +123,26 @@ class SignUpActivity : AppCompatActivity() {
         val isNicknameValid = nickname.isNotBlank() && !nickname.matches(Regex("\\s+"))
         val isAddressValid = address.isNotBlank() && !address.matches(Regex("\\s+"))
 
-        val isButtonEnabled = isIdValid && isPasswordValid &&
-                binding.etSignId.text.isNotBlank() && binding.etSignPs.text.isNotBlank()
+        val isButtonEnabled =
+            isIdValid && isPasswordValid && binding.etSignId.text.isNotBlank() && binding.etSignPs.text.isNotBlank()
 
         binding.btnSignSign.isEnabled = isButtonEnabled
 
-        if (!isPasswordValid) {
-            binding.etSignPs.backgroundTintList = ContextCompat.getColorStateList(
-                this,
-                R.color.warning_color
-            )
-            binding.etSignPs.error = getString(R.string.invalid_ps_message)
+        if (password.isNotBlank()) {
+            if (!isPasswordValid) {
+                binding.etSignPs.backgroundTintList = ContextCompat.getColorStateList(
+                    this, R.color.warning_color
+                )
+                binding.etSignPs.error = getString(R.string.invalid_ps_message)
+            } else {
+                binding.etSignPs.backgroundTintList = ContextCompat.getColorStateList(
+                    this, R.color.white
+                )
+                binding.etSignPs.error = null
+            }
         } else {
             binding.etSignPs.backgroundTintList = ContextCompat.getColorStateList(
-                this,
-                R.color.white
+                this, R.color.white
             )
             binding.etSignPs.error = null
         }
