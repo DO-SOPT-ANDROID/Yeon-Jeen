@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.cookandroid.week1.R
 import com.cookandroid.week1.databinding.ActivitySignupBinding
@@ -32,25 +33,19 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        binding.etSignId.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                signUpViewModel.onIdChanged(s.toString())
-                updateButtonState()
-            }
+        binding.etSignId.addTextChangedListener { s ->
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
+            signUpViewModel.onIdChanged(s.toString())
+            updateButtonState()
 
-        binding.etSignPs.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                signUpViewModel.onPasswordChanged(s.toString())
-                updateButtonState()
-            }
+        }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
+        binding.etSignPs.addTextChangedListener { s ->
+
+            signUpViewModel.onPasswordChanged(s.toString())
+            updateButtonState()
+
+        }
 
         binding.btnSignSign.setOnClickListener {
             if (SignUpRegistration()) {
