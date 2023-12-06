@@ -16,14 +16,14 @@ class LoginActivity : AppCompatActivity() {
     private val loginLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             result.data?.let { data ->
-                val id = data.getStringExtra("id")
-                val nickname = data.getStringExtra("nickname")
-                val address = data.getStringExtra("address")
+                val id = data.getStringExtra(getString(R.string.id))
+                val nickname = data.getStringExtra(getString(R.string.nickname))
+                val address = data.getStringExtra(getString(R.string.address))
 
                 val intent = Intent(this, MainActivity::class.java).apply {
-                    putExtra("id", id)
-                    putExtra("nickname", nickname)
-                    putExtra("address", address)
+                    putExtra(getString(R.string.id), id)
+                    putExtra(getString(R.string.nickname), nickname)
+                    putExtra(getString(R.string.address), address)
                 }
 
                 startActivity(intent)
@@ -54,8 +54,8 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginResult.observe(this) { profileRespond ->
             profileRespond?.let {
                 val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
-                    putExtra("id", profileRespond.id)
-                    putExtra("nickname", profileRespond.nickname)
+                    putExtra(getString(R.string.id), profileRespond.id)
+                    putExtra(getString(R.string.nickname), profileRespond.nickname)
                 }
                 startActivity(intent)
                 Toast.makeText(

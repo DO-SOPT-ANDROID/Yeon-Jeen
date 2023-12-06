@@ -27,9 +27,9 @@ class MyPageFragment : Fragment() {
         binding = FragmentMyPageBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        val nickname = arguments?.getString("nickname")
-        val id = arguments?.getString("id")
-        val address = arguments?.getString("address")
+        val nickname = arguments?.getString(getString(R.string.nickname))
+        val id = arguments?.getString(getString(R.string.id))
+        val address = arguments?.getString(getString(R.string.address))
 
         binding.tvMypageNickname.text = nickname
         binding.tvMypageEditid.text = id

@@ -61,7 +61,7 @@ class SignUpActivity : AppCompatActivity() {
 
                 signUpViewModel.signUp(password, id, nickname, address)
             } else {
-                Toast.makeText(this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.failsignup), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -75,10 +75,10 @@ class SignUpActivity : AppCompatActivity() {
                 val address = binding.etSignAd.text.toString()
 
                 val intent = Intent(this@SignUpActivity, LoginActivity::class.java).apply {
-                    putExtra("id", id)
-                    putExtra("password", password)
-                    putExtra("nickname", nickname)
-                    putExtra("address", address)
+                    putExtra(getString(R.string.id), id)
+                    putExtra(getString(R.string.ps), password)
+                    putExtra(getString(R.string.nickname), nickname)
+                    putExtra(getString(R.string.address), address)
                 }
 
                 startActivity(intent)

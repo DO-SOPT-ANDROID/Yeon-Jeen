@@ -20,9 +20,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        id = intent.getStringExtra("id")
-        nickname = intent.getStringExtra("nickname")
-        address = intent.getStringExtra("address")
+        id = intent.getStringExtra(getString(R.string.id))
+        nickname = intent.getStringExtra(getString(R.string.nickname))
+        address = intent.getStringExtra(getString(R.string.address))
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -42,9 +42,9 @@ class MainActivity : AppCompatActivity() {
                     val myPageFragment = MyPageFragment()
 
                     val bundle = Bundle()
-                    bundle.putString("id", id)
-                    bundle.putString("nickname", nickname)
-                    bundle.putString("address", address)
+                    bundle.putString(getString(R.string.id), id)
+                    bundle.putString(getString(R.string.nickname), nickname)
+                    bundle.putString(getString(R.string.address), address)
                     myPageFragment.arguments = bundle
 
                     myPageFragment
