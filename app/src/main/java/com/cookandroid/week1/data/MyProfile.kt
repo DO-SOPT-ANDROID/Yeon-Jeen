@@ -1,7 +1,6 @@
-package com.cookandroid.week1
+package com.cookandroid.week1.data // ktlint-disable filename
 
 import androidx.annotation.DrawableRes
-
 
 sealed class UserInformation {
     data class MyProfile(
@@ -17,7 +16,5 @@ sealed class UserInformation {
         val self_description: String,
         val type: String,
 
-        ) : UserInformation()
+    ) : UserInformation()
 }
-
-

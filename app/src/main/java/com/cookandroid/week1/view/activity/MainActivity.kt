@@ -1,11 +1,13 @@
-package com.cookandroid.week1
+package com.cookandroid.week1.view.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.cookandroid.week1.R
 import com.cookandroid.week1.databinding.ActivityMainBinding
-
-
+import com.cookandroid.week1.view.fragment.DoAndroidFragment
+import com.cookandroid.week1.view.fragment.HomeFragment
+import com.cookandroid.week1.view.fragment.MyPageFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,19 +20,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        id = intent.getStringExtra("id")
-        nickname = intent.getStringExtra("nickname")
-        address = intent.getStringExtra("address")
-
+        id = intent.getStringExtra(getString(R.string.id))
+        nickname = intent.getStringExtra(getString(R.string.nickname))
+        address = intent.getStringExtra(getString(R.string.address))
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fcv_home, HomeFragment())
                 .commit()
         }
-
-//        applicationContext.resources.getString(R.string.)
 
         clickBottomNavigation()
     }
@@ -43,11 +41,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_mypage -> {
                     val myPageFragment = MyPageFragment()
 
-
                     val bundle = Bundle()
-                    bundle.putString("id", id)
-                    bundle.putString("nickname", nickname)
-                    bundle.putString("address", address)
+                    bundle.putString(getString(R.string.id), id)
+                    bundle.putString(getString(R.string.nickname), nickname)
+                    bundle.putString(getString(R.string.address), address)
                     myPageFragment.arguments = bundle
 
                     myPageFragment
@@ -55,7 +52,6 @@ class MainActivity : AppCompatActivity() {
 
                 else -> HomeFragment()
             }
-
 
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fcv_home, fragment)
@@ -65,5 +61,3 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-
-
